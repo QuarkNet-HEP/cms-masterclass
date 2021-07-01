@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html"%}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>CMS Masterclass</h1>
+
+    <p>
+      The purpose of this masterclass is to allow you to identify for yourself 
+      some  interesting particle physics interactions or "events".
+      These events have been seen using an 
+      experiment called
+      <a href="https//cms.cern" target="_blank"> CMS,</a>
+      at <a href="https://cern.ch" target="_blank">CERN</a>,
+      near Geneva, Switzerland. 
+      This experiment runs at the
+      <a href="http://www.cern.ch/CERN/Divisions/PS/PSComplex/CERNAcc.html">LHC</a>
+      (Large Hadron Collider).
+    </p>
+
+    <p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('contents') }}" role="button">Start</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

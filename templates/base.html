@@ -1,0 +1,42 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+{{super()}}
+<script type="text/javascript" async
+	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script type="text/javascript"
+	src="{{ url_for('static', filename='three.min.js') }}"></script>
+
+<script type="text/javascript"
+	src="{{ url_for('static', filename='OrbitControls.js') }}"></script>
+
+<script type="text/javascript"
+	src="{{ url_for('static', filename='GLTFLoader.js') }}"></script>	    
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+	      data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">CMS Masterclass</a>
+    </div>
+    
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+	<li><a href="/contents">Contents</a></li>
+	<li><a href="/events">Events</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
