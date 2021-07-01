@@ -34,6 +34,20 @@ def contents():
         title='Contents',
     )
 
+@app.route('/introduction')
+def introduction():
+    return render_template(
+        'introduction.html',
+        title='Introduction',
+    )
+
+@app.route('/detector')
+def detector():
+    return render_template(
+        'detector.html',
+        title='Detector',
+    )
+
 @app.route('/events')
 def events():
     return render_template(
