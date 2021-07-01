@@ -3,7 +3,7 @@
 A prototype masterclass for CMS using interactive 3D event displays
 
 
-To run (this application requires python3):
+To run (in a python3 environment):
 
 ```
 git clone https://github.com/QuarkNet-HEP/cms-masterclass.git
@@ -14,4 +14,4 @@ flask run
 ```
 
 
-Then go to `http://127.0.0.1:5000`
+Then go to `http://127.0.0.1:5000` in your browser
