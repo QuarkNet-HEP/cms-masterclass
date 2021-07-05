@@ -3,16 +3,32 @@
 {{ title }}
 {% endblock %}
 
+{% block head %}
+{{super()}}
+
+<style>
+  #aframe {
+      height: 75vh;
+  }
+</style>
+
+<script type="text/javascript"
+	src="https://aframe.io/releases/1.2.0/aframe.min.js">
+</script>
+
+{% endblock %}
+
 {% block content %}
 <div class="container">
 
   <h1>{{ title }}</h1>
 
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item"
-	    src="https://cern.ch/cms-aframe"
-	    allowfullscreen>
-    </iframe>
+  <div id="aframe">
+    <a-scene embedded>
+      <a-sky src="{{ url_for('static', filename='graphics/CMS_equirectangular_2048.jpg') }}"
+	   rotation="0 -120 0">
+      </a-sky>
+    </a-scene>
   </div>
   
 </div>

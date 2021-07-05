@@ -15,7 +15,7 @@
 </style>
   
 <script type="text/javascript"
-	src="{{ url_for('static', filename='viewer.js') }}"></script>	    
+	src="{{ url_for('static', filename='js/viewer.js') }}"></script>	    
 
 <script type="text/javascript">
 
@@ -24,7 +24,7 @@
       init();
       
       console.log("{{ event.file_name }}");
-      load("{{ url_for('static', filename=event.file_name) }}");
+      load("{{ url_for('static', filename='events/'+event.file_name) }}");
 
       render();
       

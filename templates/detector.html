@@ -9,6 +9,28 @@
   <h1>{{ title }}</h1>
 
   <p>
+    <div class="text-center">
+      <img class="img-thumbnail"
+	   src="{{ url_for('static', filename='graphics/cms_160312_02.png') }}">
+    </div>
+  </p>
+  
+  <p>
+    A closer look at how the CMS detector works is shown below.
+    This is a cross-sectional slice of CMS showing how each type of particle
+    interacts with, and is detected by, CMS.
+  </p>
+
+  <p>
+    <div class="text-center">
+      <img class="img-thumbnail"
+	   src="{{ url_for('static', filename='graphics/CMSslice_whiteBackground.png') }}">
+    </div>
+  </p>
+
+
+  
+  <p>
     A 3D interactive view of the CMS detector is below:
   </p>
   
@@ -20,21 +42,6 @@
       </iframe>
     </div>
   </p>
-
-  
-  <p>
-    A closer look at how the CMS detector works is shown below.
-    This is a cross-sectional slice of CMS showing how each type of particle
-    interacts with, and is detected by, CMS.
-  </p>
-
-  <p>
-    <div class="text-center">
-      <img class="img-thumbnail"
-	   src="{{ url_for('static', filename='CMSslice_whiteBackground.png') }}">
-    </div>
-  </p>
-
 
   
 </div>
