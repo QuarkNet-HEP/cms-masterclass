@@ -1,2 +1,4 @@
 Flask==1.1.2
 flask_bootstrap
+matplotlib==3.2
+numpy
