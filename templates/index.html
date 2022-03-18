@@ -1,6 +1,14 @@
 {% extends "bootstrap/base.html"%}
+
 {% block title %}
 {{ title }}
+{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="shortcut icon"
+      href="{{ url_for('static', filename='graphics/cms-favicon.png') }}"
+      type="image/png"/>
 {% endblock %}
 
 {% block content %}

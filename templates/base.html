@@ -2,6 +2,10 @@
 
 {% block head %}
 {{super()}}
+<link rel="shortcut icon"
+      href="{{ url_for('static', filename='graphics/cms-favicon.png') }}"
+      type="image/png"/>
+
 <script type="text/javascript" async
 	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
