@@ -24,11 +24,11 @@ from matplotlib.figure import (
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
-zh_events = json.load(
-    app.open_resource('data/test.json')
+h_events = json.load(
+    app.open_resource('data/events.json')
 )
 
-masses = [e['M'] for e in zh_events]
+masses = [e['m'] for e in h_events]
 
 def make_hist(data=[],
               smh=False):
@@ -45,6 +45,27 @@ def make_hist(data=[],
 
     xerrs = [width*0.5 for i in range(0, nbins)]
     yerrs = np.sqrt(hist)
+
+    ttbar = np.array([
+        0.00465086,0,0.00465086,
+        0,0,0,0,0,0,0,0.00465086,
+        0,0,0,0,0,0.00465086,
+        0,0,0,0,0.00465086,
+        0.00465086,0,0,0.0139526,
+        0,0,0.00465086,0,0,0,
+        0.00465086,0.00465086,
+        0.0139526,0,0
+    ])
+    
+    dy = np.array([
+        0,0,0,0,0,
+        0.354797,0.177398,2.60481,
+        0,0,0,0,0,0,0,0,0,
+        0.177398,0.177398,
+        0,0.177398,
+        0,0,0,0,0,0,0,0,0,0,0,
+        0.177398,0,0,0,0
+    ])
     
     zz = np.array([
         0.181215,0.257161,0.44846,0.830071,
@@ -81,7 +102,30 @@ def make_hist(data=[],
         color='black', 
         marker='o'
     )
+
+    ttbar_bar = ax.bar(
+        center, 
+        ttbar, 
+        align='center', 
+        width=width, 
+        color='gray', 
+        linewidth=0, 
+        edgecolor='b', 
+        alpha=0.5
+    )
     
+    dy_bar = ax.bar(
+        center,
+        dy,
+        align='center',
+        width=width,
+        color='g',
+        linewidth=0,
+        edgecolor='black',
+        alpha=1,
+        bottom=ttbar
+    )
+
     zz_bar = ax.bar(
         center, 
         zz, 
@@ -90,15 +134,20 @@ def make_hist(data=[],
         color='b', 
         linewidth=0, 
         edgecolor='black', 
-        alpha=0.5, 
+        alpha=0.5,
+        bottom=ttbar+dy
     )
 
     if smh == False:
         handles = [
+            ttbar_bar,
+            dy_bar,
             zz_bar,
             data_bar
         ]
         labels = [
+            r'$\bf{t\bar{t}}$', 
+            r'$\bf{Z/\gamma^{*} + X}$',
             r'$\bf{ZZ \rightarrow 4l}$',
             r'$\bf{Data}$'
         ] 
@@ -117,16 +166,20 @@ def make_hist(data=[],
             color='w', 
             linewidth=1, 
             edgecolor='r', 
-            bottom=zz
+            bottom=ttbar+dy+zz
         )
 
         handles = [
+            ttbar_bar,
+            dy_bar,
             zz_bar,
             hzz_bar,
             data_bar
         ]
 
         labels = [
+            r'$\bf{t\bar{t}}$', 
+            r'$\bf{Z/\gamma^{*} + X}$',
             r'$\bf{ZZ \rightarrow 4l}$', 
             r'$\bf{m_{H} = 125~GeV}$',
             r'$\bf{Data}$'
@@ -136,11 +189,11 @@ def make_hist(data=[],
             handles,
             labels
         )
-    
+        
     ax.set_xlabel(r'$\bf{m_{4l}}$ [GeV]', fontsize=15)
     ax.set_ylabel(r'Events / 3 GeV', fontsize=15)
-    ax.set_ylim(0,10)
-    ax.set_xlim(100, 150)
+    ax.set_ylim(0,20)
+    ax.set_xlim(80, 140)
     
     buf = BytesIO()
     fig.savefig(buf, format="png")
@@ -184,7 +237,7 @@ def events():
     return render_template(
         'events.html',
         title='Events',
-        events=zh_events,
+        events=h_events,
         img_src=f"data:image/png;base64,{img_data}",
     )
 
@@ -193,21 +246,25 @@ def event(id):
 
     smh = False
     
-    if int(id) == 11:
+    if int(id) == 66:
         smh=True
     
     img_data = make_hist(
         data=masses[:int(id)],
         smh=smh
     )
+
+    print(
+        list(filter(lambda e: e["id"] == id, h_events))[0]
+    )
     
     return render_template(
         'event.html',
         title=f'Event {id}',
-        nevents=len(zh_events),
+        nevents=len(h_events),
         back_id=int(id)-1,
         next_id=int(id)+1,
-        event=list(filter(lambda e: e["id"] == id, zh_events))[0],
+        event=list(filter(lambda e: e["id"] == id, h_events))[0],
         img_src=f"data:image/png;base64,{img_data}",
     )
 

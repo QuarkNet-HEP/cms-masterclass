@@ -42,6 +42,18 @@ render = function() {
 
 };
 
+fixes = function() {
+
+    let tracks = scene.getObjectByName('Tracks_V3');
+
+    tracks.children.forEach(c => {
+
+	c.material.opacity = 0.25;
+	
+    });
+
+};
+
 load = function(gltf_file_name) {
 
     const asset = gltf_file_name;
@@ -54,6 +66,8 @@ load = function(gltf_file_name) {
 	function(gltf) {
 	    
 	    scene.add(gltf.scene);	    
+	    fixes();
+	    
 	},
 
 	function(xhr) {

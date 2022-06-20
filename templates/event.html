@@ -4,12 +4,19 @@
 {{super()}}
 
 <style>
+  
   canvas {
       width: 100%;
       height: 100%;
   }
+  
   #display {
-      height: 75vh;
+      height: 50vh;
+      width: 60vh;
+  }
+
+  #hist {
+      height: 50vh;
   }
   
 </style>
@@ -39,20 +46,21 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
 
-  <div class="text-center">
-    <h2>{{ title }}</h2>
+  <div class="row">
 
-    <div id="display"></div>
-    
-    <p>
+    <div class="text-center">
+      <h2>{{ title }}</h2>
+    </div>
+
     <ul class="pager">
       {% if back_id >= 1 %}
       <li class="previous">
-	<a href="{{ url_for('event', id=back_id) }}">
-	  Previous
-	</a>
+	  <a href="{{ url_for('event', id=back_id) }}">
+	    Previous
+	  </a>
       </li>
       {% endif %}
       {% if next_id <= nevents %}
@@ -63,20 +71,31 @@
       </li>
       {% endif %}
     </ul> 
-    </p>
-
-    <p>
-      <img class="img-thumbnail" src={{img_src}}>
-    </p>
-    
-    <p>
-      <a href="{{ url_for('events') }}">
-	<button type="button" class="btn btn-outline-primary">
-	  Back to event list
-	</button>
-      </a>
-    </p>
-    
   </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div id="display"></div>
+    </div>
+
+    <div class="col-md-6">
+      <img id="hist" class="img-thumbnail" src={{img_src}}>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="text-center">
+	<a href="{{ url_for('events') }}">
+	  <button type="button" class="btn btn-outline-primary">
+	    Back to event list
+	  </button>
+	</a>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+
 {% endblock %}
