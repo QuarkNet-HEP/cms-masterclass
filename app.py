@@ -232,7 +232,10 @@ def detector():
 @app.route('/events')
 def events():
 
-    img_data = make_hist()
+    img_data = make_hist(
+        data=[123.5],
+        smh=False
+    )
     
     return render_template(
         'events.html',
@@ -243,7 +246,7 @@ def events():
 
 @app.route('/events/<id>')
 def event(id):
-
+    
     smh = False
     
     if int(id) == 66:

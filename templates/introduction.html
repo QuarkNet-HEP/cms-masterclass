@@ -23,13 +23,60 @@
 
   <h1>{{ title }}</h1>
 
-  <div id="aframe">
-    <a-scene embedded>
-      <a-sky src="{{ url_for('static', filename='graphics/CMS_equirectangular_2048.jpg') }}"
-	   rotation="0 -120 0">
-      </a-sky>
-    </a-scene>
-  </div>
+  <p>
+    The LHC at CERN straddles the French-Swiss border and is 25 km in circumference. Protons are
+    accelerated in opposite directions around the LHC and collide at four points. At each of these
+    four points large detectors have been constructed to record these collisions.
+  </p>
+  
+   <p>
+    <div class="text-center">
+      <img class="img-thumbnail"
+	   src="{{ url_for('static', filename='graphics/LHC.png') }}">
+    </div>
+  </p>
+
+  <p>
+    The LHC itself is 100 m below the surface and superconducting magnets accelerate
+    the protons:
+  </p>
+
+  <p>
+    <div id="aframe">
+      <a-scene embedded>
+	<a-sky src="{{ url_for('static', filename='graphics/MA27852_Panorama.jpg') }}"
+	       rotation="0 -120 0">
+	</a-sky>
+      </a-scene>
+    </div>
+  </p>
+
+  <p>
+    The CMS (Compact Muon Solenoid) detector is a large multi-purpose detector:
+  </p>
+  
+  <p>
+    <div id="aframe">
+      <a-scene embedded>
+	<a-sky src="{{ url_for('static', filename='graphics/CMS_equirectangular_2048.jpg') }}"
+	       rotation="0 -120 0">
+	</a-sky>
+      </a-scene>
+    </div>
+  </p>
+
+   <ul class="pager">
+    <li class="next">
+      <a href="{{ url_for('detector') }}">
+	Next: The CMS Detector
+      </a>
+    </li>
+    <li class="previous">
+      <a href="{{ url_for('contents') }}">
+	Back: Contents
+      </a>
+    </li>
+  </ul>
   
 </div>
 {% endblock %}

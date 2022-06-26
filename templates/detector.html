@@ -27,8 +27,6 @@
 	   src="{{ url_for('static', filename='graphics/CMSslice_whiteBackground.png') }}">
     </div>
   </p>
-
-
   
   <p>
     A 3D interactive view of the CMS detector is below:
@@ -42,7 +40,19 @@
       </iframe>
     </div>
   </p>
-
   
+   <ul class="pager">
+    <li class="next">      
+      <a href="{{ url_for('events') }}">
+	Next: Events
+      </a>
+    </li>
+    <li class="previous">
+      <a href="{{ url_for('detector') }}">
+	Back: The CMS Detector
+      </a>
+    </li>
+  </ul>
+
 </div>
 {% endblock %}

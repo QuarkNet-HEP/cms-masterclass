@@ -6,19 +6,91 @@
 {% block content %}
 <div class="container">
 
-  {% for event in events: %}
   <p>
-    <a href="{{ url_for('event', id=event.id) }}">
-      <button type="button" class="btn btn-outline-primary">
-	Event {{ event.id }}
-      </button>
-    </a>
+    The Higgs boson can decay in many ways. Here, we examine when a Higgs boson
+    decays to two Z bosons: \(H \rightarrow ZZ\).
   </p>
-  {% endfor %}
 
   <p>
-     <img src={{ img_src }}> 
+    The two Z bosons decays into two oppositely-charged leptons: two electrons, two muons, or
+    two taus. Here we only look at electrons and muons so the four-lepton states we examine here
+    either have four electrons, four muons, or two muons and two electrons.
   </p>
+
+  <p>
+    At left is an example event with four leptons. Rotate and zoom in and out and hover over the
+    annotated objects.
+  </p>
+
+  <p>
+    By measuring the energy and momentum of
+    each of these leptons we can calculate the mass of the particle which produced them. This
+    is known as the "invariant mass".
+  </p>
+
+  <p>
+    At right is a histogram of the invariant mass. The horizontal axis shows the range of invariant
+    masses we are studying and the vertical axes shows how often the values of invariant mass appear
+    (in bins of 3 GeV). It turns out that there are other processes that can either produce two
+    Z bosons and/or produce four leptons. These are know as the background processes and the amount
+    of background expected for the amount of data we examine is shown.
+  </p>
+  
+  <p>
+    The invariant mass of this particular event is shown in the histogram. Begin to examine the events from "Event 1" below or start at any other event in the dropdown menu. 
+  </p>
+
+  <p>
+    <div class="row">
+      <div class="col-md-6">
+	<div class="embed-responsive embed-responsive-4by3">
+	  <iframe class="embed-responsive-item"
+		  src="https://cms3d.web.cern.ch/sandbox/annotate.html"
+		  allowfullscreen>
+	  </iframe>
+	</div>
+      </div>
+      
+      <div class="col-md-6">
+	<img id="hist" class="img-thumbnail" src={{img_src}}>
+      </div>
+    </div>
+  </p>
+
+  <p>
+    <div class="btn-group">
+      <button type="button"
+	      class="btn btn-default dropdown-toggle"
+	      data-toggle="dropdown"
+	      aria-haspopup="true"
+	      aria-expanded="false">
+	Events <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+	{% for event in events: %}
+	<li>
+	  <a href="{{ url_for('event', id=event.id) }}">
+	    Event {{ event.id }}
+	  </a>
+	</li>
+	{% endfor %}	
+      </ul>
+    </div>
+  </p>
+  
+  <ul class="pager">
+    <li class="next">
+      <a href="{{ url_for('event', id=1) }}">
+	Next: Event 1
+      </a>
+    </li>
+    <li class="previous">
+      <a href="{{ url_for('detector') }}">
+	Back: The CMS Detector
+      </a>
+    </li>
+  </ul>
+  
   
 </div>
 {% endblock %}
